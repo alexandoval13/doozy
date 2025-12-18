@@ -93,7 +93,7 @@ app.get('/tasks', (req, res) => {
 });
 
 app.delete('/tasks/:id', (req, res) => {
-  const id = Number(req.params);
+  const id = Number(req.params.id);
 
   tasks = tasks.filter((t) => t.id !== id);
 
