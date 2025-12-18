@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Doozy</title>
+  </head>
+  <body>
+    <h1>Tasks</h1>
+    <form id="task-form">
+      <input placeholder="Title" id="title" required />
+      <input type="number" placeholder="Hour" id="hour" />
+      <input type="number" placeholder="Urgency" id="urgency" />
+      <input type="number" placeholder="Effort" id="effort" />
+      <button type="submit">Add</button>
+    </form>
+    </br>
+    <ul id="task-list"></ul>
+
+    <script>
+      async function loadTasks() {
+        const res = await fetch("http://localhost:3000/tasks");
+        const tasks = await res.json();
+
+        const list = document.getElementById("task-list");
+
+        list.innerHTML= "";
+
+        tasks.forEach((task => {
+          const li = document.createElement("li");
+          li.textContent = task.title;
+
+          const btn = document.createElement("button");
+          btn.textContext = "Delete";
+
+          btn.onClick = async () => {
+            await fetch(
+              `http://localhost:3000/tasks/${task.id}`,
+              {method: "DELETE"}
+            );
+            loadTasks();
+          };
+
+          li.appendChild(btn);
+          list.appendChild(li);
+        }))
+      }
+
+      document
+      .getElementById("task-form")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const body = {
+          title: title.value,
+          hour: Number(hour.value),
+          urgency: Number(urgency.value),
+          effort: Number(effort.value),
+        };
+
+        await fetch("http://localhost:3000/tasks", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+
+        e.target.reset();
+        loadTasks();
+      });
+
+      loadTasks();
+    </script>
+  </body>
+</html>
