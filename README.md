@@ -36,15 +36,18 @@ Currently, the project focuses on:
 ## Project Structure
 
 ```
-task_engine/
-├── external/ # Third-party header-only libraries (Catch2)
-├── src/
-│   ├── engine.h # Engine contract
-│   ├── engine.cpp # Engine logic
-│   └── main.cpp # CLI wrapper
-├── tests/
-│   └── engine_tests.cpp
-├── CMakeLists.txt
+doozy/
+├─ backend/           # Node.js backend
+│  └─ run_engine.js
+├─ task_engine/
+│   ├── external/     # Third-party header-only libraries (Catch2)
+│   └── src/
+│   │   ├── engine.h # Engine contract
+│   │   ├── engine.cpp # Engine logic
+│   │   └── main.cpp # CLI wrapper
+│   ├── tests/
+│   │   └── engine_tests.cpp
+│   └──  CMakeLists.txt
 └── README.md
 ```
 
@@ -54,9 +57,8 @@ task_engine/
 
 ### Prerequisites
 
-- C++ compiler (g++ recommended)
+- C++ compiler
 - CMake (>=3.16)
-- Terminal or VS Code
 
 ### Build
 
@@ -79,7 +81,22 @@ Build executables
 cmake --build .
 ```
 
-### Run CLI
+### Run the JS Backend
+
+From the root directory
+
+```
+cd backend
+node run_engine.js
+```
+
+Runs a test input to the C++ task engine which outputs a result
+
+```
+Engine result: { category: 'today', priority: 48 }
+```
+
+### Run Tests on CLI
 
 Example input: hour_created urgency effort
 
@@ -105,7 +122,7 @@ Expected output
 
 ```
 ===============================================================================
-All tests passed (4 assertions in 2 test cases)
+All tests passed (8 assertions in 4 test cases)
 ```
 
 Tests verify:

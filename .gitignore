@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+# C++ build artifacts
+task_engine/build/
+task_engine/CMakeCache.txt
+task_engine/*.o
+task_engine/*.exe
+task_engine/*.obj
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
