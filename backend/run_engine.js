@@ -38,6 +38,4 @@ engine.on('close', (code) => {
     category,
     priority: Number(priority),
   };
-
-  console.log('Engine result:', result);
 });
