@@ -1,7 +1,11 @@
-const express = require('express');
-const { spawn } = require('child_process');
-const path = require('path');
-const cors = require('cors');
+import express from 'express';
+import { spawn } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cors from 'cors';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
