@@ -1,127 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>Doozy</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
   </head>
   <body>
-    <div style="max-width: 600px; min-width: 506px; margin: 24px">
-      <h1>Tasks</h1>
-      <form id="task-form" style="display: flex; flex-direction: column; row-gap: 4px;">
-        <input placeholder="Title" id="title" required />
-        <div style="display: flex; flex-direction: row; justify-content: space-between;">
-          <div style="display: flex; flex-direction: row; column-gap: 12px;">
-            <div style="display: flex; flex-direction: column;">
-              <input type="number" placeholder="0-23" id="hour" />
-              <label for="hour">Hour</label>
-            </div>
-            <div style="display: flex; flex-direction: column;">
-              <input type="number" placeholder="1-5" id="urgency" />
-              <label for="urgency">Urgency</label>
-            </div>
-            <div style="display: flex; flex-direction: column;">
-              <input type="number" placeholder="1-5" id="effort" />
-              <label for="effort">Effort</label>
-            </div>
-          </div>
-          <div>
-            <button type="submit">Add</button>
-          </div>
-        </div>
-      </form>
-      </br>
-
-      <form id="list-view-form">
-        <input id="radio-select-today" type="radio" name="list-view" value="today" checked>Today</input>
-        <input id="radio-select-tomorrow" type="radio" name="list-view" value="tomorrow">Tomorrow</input>
-      </form>
-
-      <div style="border: 2px solid gray">
-        <ul id="task-list-today" style="padding: 24px"></ul>
-        <ul id="task-list-tomorrow" style="padding: 24px" hidden></ul>
-      </div>
-    </div>
-
-    <script>
-      async function loadTasks() {
-        const res = await fetch("http://localhost:3000/tasks");
-        const tasks = await res.json();
-
-        const today = document.getElementById("task-list-today");
-        const tomorrow = document.getElementById("task-list-tomorrow");
-
-        today.innerHTML= "";
-        tomorrow.innerHTML= "";
-
-        tasks.forEach((task => {
-          const li = document.createElement("li");
-          li.textContent = task.title;
-          li.style = "display: flex; flex-direction: row; column-gap: 12px;";
-
-          const btn = document.createElement("button");
-          btn.textContext = "Delete";
-          btn.innerHTML = "Delete";
-
-          btn.addEventListener("click", async () => {
-            await fetch(
-              `http://localhost:3000/tasks/${task.id}`,
-              {
-                method: "DELETE"
-              }
-            );
-            loadTasks();
-          });
-
-          li.appendChild(btn);
-
-          if (task.category == 'today') {
-            today.appendChild(li);
-          } else {
-            tomorrow.appendChild(li);
-          }
-        }))
-      }
-
-      document
-      .getElementById("task-form")
-      .addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const body = {
-          title: title.value,
-          hour: Number(hour.value),
-          urgency: Number(urgency.value),
-          effort: Number(effort.value),
-        };
-
-        await fetch("http://localhost:3000/tasks", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
-
-        e.target.reset();
-
-        loadTasks();
-      });
-
-      document.getElementById("list-view-form").addEventListener("input", async (e) => {
-        e.preventDefault();
-
-        const todayList = document.getElementById("task-list-today");
-        const tomorrowList = document.getElementById("task-list-tomorrow");
-
-        const value = e.target.value;
-        if (value == 'today') {
-          todayList.removeAttribute("hidden");
-          tomorrowList.setAttribute("hidden", true);
-        } else {
-          tomorrowList.removeAttribute("hidden");
-          todayList.setAttribute("hidden", true);
-        }
-
-      })
-
-      loadTasks();
-    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
