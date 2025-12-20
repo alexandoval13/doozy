@@ -1,6 +1,12 @@
 # Node modules
 node_modules/
 
+# Builds
+dist/
+
+# Data
+data/
+
 # C++ build artifacts
 task_engine/build/
 task_engine/CMakeCache.txt
