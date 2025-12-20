@@ -37,10 +37,22 @@ for (const file of files) {
   db.transaction(() => {
     db.exec(sql);
     db.prepare(`INSERT INTO migration (filename, run_at) VALUES (?, ?)`).run(
-      files,
+      file,
       new Date().toISOString()
     );
   })();
 
   console.log(`Applied migration: ${file}`);
 }
+
+// const seedingScripts = fs
+//   .readdirSync(seedDir)
+//   .filter((f) => f.endsWith('.sql'))
+//   .sort();
+
+// for (const script of seedingScripts) {
+//   const sql = fs.readFileSync(path.join(seedDir, script), 'utf-8');
+//   db.transaction(() => {
+//     db.exec(sql);
+//   });
+// }
