@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-type TaskCategory = 'today' | 'tomorrow';
+type TaskCategory = 'today' | 'tomorrow' | 'all';
 
 interface Task {
   id: number;
@@ -15,7 +15,7 @@ interface Task {
 
 export default function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [listView, setListView] = useState<TaskCategory>('today');
+  const [listView, setListView] = useState<TaskCategory>('all');
 
   const [title, setTitle] = useState<string>('');
   const [hour, setHour] = useState<string>('');
@@ -150,6 +150,19 @@ export default function App() {
               const value = e.target.value as TaskCategory;
               return setListView(value);
             }}
+            id="radio-select-all"
+            type="radio"
+            name="list-view"
+            value={'all'}
+            checked={listView === 'all'}
+          />
+          <label htmlFor="radio-select-all">All</label>
+
+          <input
+            onChange={(e) => {
+              const value = e.target.value as TaskCategory;
+              return setListView(value);
+            }}
             id="radio-select-today"
             type="radio"
             name="list-view"
@@ -173,7 +186,26 @@ export default function App() {
         </form>
 
         <div style={{ border: '2px solid gray' }}>
-          {listView === 'today' ? (
+          {listView === 'all' && (
+            <ul id="task-list-today" style={{ padding: '24px' }}>
+              {tasks.map((t) => (
+                <li key={`li::today::${t.id}`}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <p>{t.title}</p>
+                    <button onClick={() => handleDeleteTask(t.id)}>
+                      DELETE
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {listView === 'today' && (
             <ul id="task-list-today" style={{ padding: '24px' }}>
               {tasks
                 .filter((t) => t.category === 'today')
@@ -193,7 +225,8 @@ export default function App() {
                   </li>
                 ))}
             </ul>
-          ) : (
+          )}
+          {listView == 'tomorrow' && (
             <ul id="task-list-tomorrow" style={{ padding: '24px' }}>
               {tasks
                 .filter((t) => t.category === 'tomorrow')
