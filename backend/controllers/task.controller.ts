@@ -4,7 +4,6 @@ import * as TaskService from '../services/task.service.js';
 export function getAllTasks(req: Request, res: Response) {
   try {
     const tasks = TaskService.getTasks();
-    console.log({ tasks });
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch tasks' });

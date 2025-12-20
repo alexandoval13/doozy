@@ -4,13 +4,19 @@ import { runEngine } from '../run_engine.js';
 
 async function calculatePriority(
   data: TaskRepo.PriorityData
-): Promise<TaskRepo.Task['task_priority']> {
-  const defaultPriority = 1;
+): Promise<{ task_priority: number; category: string }> {
+  const defaultResult = { task_priority: 1, category: 'today' };
+
   try {
-    return await runEngine(data);
+    const { priority, category } = await runEngine(data);
+
+    return {
+      task_priority: Number(priority),
+      category,
+    };
   } catch (error) {
     console.error('Failed to calculate priority. Error: ', error);
-    return defaultPriority;
+    return defaultResult;
   }
 }
 
@@ -19,16 +25,24 @@ export function getTasks() {
 }
 
 export async function createTask(data: TaskRepo.CreateTaskInput) {
-  const { effort, urgency, due_date } = data;
+  const { title, effort, urgency, due_date = null } = data;
 
-  const taskPriority = await calculatePriority({
+  const { task_priority } = await calculatePriority({
     date: new Date(),
     urgency,
     effort,
     due_date,
   });
 
-  return TaskRepo.createTask({ ...data, task_priority: taskPriority });
+  return TaskRepo.createTask({
+    title,
+    urgency,
+    effort,
+    task_priority,
+    due_date,
+    completed: 0, // false
+    story_id: null,
+  });
 }
 
 export function deleteTask(id: string): Database.RunResult {

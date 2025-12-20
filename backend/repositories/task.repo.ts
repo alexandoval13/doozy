@@ -41,7 +41,7 @@ export function getAllTasks(): Task[] {
 
 export function createTask(data: CreateTaskInput) {
   const id = uuid();
-  const created_at = new Date();
+  const created_at = new Date().toISOString();
 
   const {
     title,
@@ -53,22 +53,24 @@ export function createTask(data: CreateTaskInput) {
     story_id,
   } = data;
 
-  db.prepare(
-    `
+  return db
+    .prepare(
+      `
       INSERT INTO task (id, created_at, title, urgency, effort, task_priority, due_date, completed, story_id)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `
-  ).run(
-    id,
-    created_at,
-    title,
-    urgency,
-    effort,
-    task_priority,
-    due_date,
-    completed,
-    story_id
-  );
+    )
+    .run(
+      id,
+      created_at,
+      title,
+      urgency,
+      effort,
+      task_priority,
+      due_date,
+      completed,
+      story_id
+    );
 }
 
 export function deleteTask(id: string) {

@@ -1,6 +1,7 @@
 import { spawn } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PriorityData } from './repositories/task.repo.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,15 +11,34 @@ const ENGINE_PATH = path.resolve(
   '../../task-engine/build/task_engine'
 );
 
-// v0: store data in memory
-let tasks = [];
-let nextId = 1;
+export interface EngineResult {
+  priority: string;
+  category: string;
+}
+
+const LOWER = 1;
+const UPPER = 5;
+
+function validateRange(value: number) {
+  if (value < LOWER || value > UPPER) {
+    return false;
+  }
+  return true;
+}
 
 // Call C++ Task Engine
-export function runEngine({ date, urgency, effort }) {
+export function runEngine({
+  date,
+  urgency,
+  effort,
+}: PriorityData): Promise<EngineResult> {
   return new Promise((resolve, reject) => {
     const proc = spawn(ENGINE_PATH);
 
+    const validUrgency = validateRange(urgency);
+    const validEffort = validateRange(effort);
+
+    // if (validUrgency && validEffort && date) {
     const hour = date.getHours();
     const input = `${hour} ${urgency} ${effort}`;
 
@@ -49,6 +69,9 @@ export function runEngine({ date, urgency, effort }) {
     });
 
     proc.stdin.write(input);
+    // } else {
+    //   throw Error({message:});
+    // }
 
     proc.stdin.end();
   });
