@@ -1,6 +1,6 @@
 CMakeFiles/engine_tests.dir/src/engine.cpp.o: \
-  /Users/alexandra/engineering/projects/see-do/task-engine/src/engine.cpp \
-  /Users/alexandra/engineering/projects/see-do/task-engine/src/engine.h \
+  /Users/alexandra/engineering/projects/doozy/task-engine/src/engine.cpp \
+  /Users/alexandra/engineering/projects/doozy/task-engine/src/engine.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/max.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/comp.h \

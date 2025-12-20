@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/alexandra/engineering/projects/see-do/task-engine/src/engine.cpp" "CMakeFiles/engine_tests.dir/src/engine.cpp.o" "gcc" "CMakeFiles/engine_tests.dir/src/engine.cpp.o.d"
-  "/Users/alexandra/engineering/projects/see-do/task-engine/tests/engine_tests.cpp" "CMakeFiles/engine_tests.dir/tests/engine_tests.cpp.o" "gcc" "CMakeFiles/engine_tests.dir/tests/engine_tests.cpp.o.d"
+  "/Users/alexandra/engineering/projects/doozy/task-engine/src/engine.cpp" "CMakeFiles/engine_tests.dir/src/engine.cpp.o" "gcc" "CMakeFiles/engine_tests.dir/src/engine.cpp.o.d"
+  "/Users/alexandra/engineering/projects/doozy/task-engine/tests/engine_tests.cpp" "CMakeFiles/engine_tests.dir/tests/engine_tests.cpp.o" "gcc" "CMakeFiles/engine_tests.dir/tests/engine_tests.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

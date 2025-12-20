@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/alexandra/engineering/projects/see-do/task-engine/external
+CXX_INCLUDES = -I/Users/alexandra/engineering/projects/doozy/task-engine/external
 
 CXX_FLAGS = -std=gnu++17
 

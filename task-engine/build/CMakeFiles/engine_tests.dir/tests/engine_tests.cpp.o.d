@@ -1,6 +1,6 @@
 CMakeFiles/engine_tests.dir/tests/engine_tests.cpp.o: \
-  /Users/alexandra/engineering/projects/see-do/task-engine/tests/engine_tests.cpp \
-  /Users/alexandra/engineering/projects/see-do/task-engine/tests/../external/catch.hpp \
+  /Users/alexandra/engineering/projects/doozy/task-engine/tests/engine_tests.cpp \
+  /Users/alexandra/engineering/projects/doozy/task-engine/tests/../external/catch.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/optional \
@@ -900,4 +900,4 @@ CMakeFiles/engine_tests.dir/tests/engine_tests.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/deque \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stack \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
-  /Users/alexandra/engineering/projects/see-do/task-engine/tests/../src/engine.h
+  /Users/alexandra/engineering/projects/doozy/task-engine/tests/../src/engine.h

@@ -5,7 +5,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ENGINE_PATH = path.resolve(__dirname, '../task-engine/build/task_engine');
+const ENGINE_PATH = path.resolve(
+  __dirname,
+  '../../task-engine/build/task_engine'
+);
+
 // v0: store data in memory
 let tasks = [];
 let nextId = 1;
@@ -15,7 +19,8 @@ export function runEngine({ date, urgency, effort }) {
   return new Promise((resolve, reject) => {
     const proc = spawn(ENGINE_PATH);
 
-    const input = `${date} ${urgency} ${effort}`;
+    const hour = date.getHours();
+    const input = `${hour} ${urgency} ${effort}`;
 
     let output = '';
     let error = '';
@@ -50,7 +55,7 @@ export function runEngine({ date, urgency, effort }) {
 }
 
 // const test = await runEngine({
-//   created_at: new Date(),
+//   date: new Date(),
 //   urgency: 2,
 //   effort: 3,
 // });

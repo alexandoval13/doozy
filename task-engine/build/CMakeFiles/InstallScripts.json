@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"/Users/alexandra/engineering/projects/see-do/task-engine/build/cmake_install.cmake"
+		"/Users/alexandra/engineering/projects/doozy/task-engine/build/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

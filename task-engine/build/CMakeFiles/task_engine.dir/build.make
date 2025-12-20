@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/alexandra/engineering/projects/see-do/task-engine
+CMAKE_SOURCE_DIR = /Users/alexandra/engineering/projects/doozy/task-engine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alexandra/engineering/projects/see-do/task-engine/build
+CMAKE_BINARY_DIR = /Users/alexandra/engineering/projects/doozy/task-engine/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/task_engine.dir/depend.make
@@ -73,32 +73,32 @@ CMakeFiles/task_engine.dir/codegen:
 .PHONY : CMakeFiles/task_engine.dir/codegen
 
 CMakeFiles/task_engine.dir/src/main.cpp.o: CMakeFiles/task_engine.dir/flags.make
-CMakeFiles/task_engine.dir/src/main.cpp.o: /Users/alexandra/engineering/projects/see-do/task-engine/src/main.cpp
+CMakeFiles/task_engine.dir/src/main.cpp.o: /Users/alexandra/engineering/projects/doozy/task-engine/src/main.cpp
 CMakeFiles/task_engine.dir/src/main.cpp.o: CMakeFiles/task_engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexandra/engineering/projects/see-do/task-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task_engine.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task_engine.dir/src/main.cpp.o -MF CMakeFiles/task_engine.dir/src/main.cpp.o.d -o CMakeFiles/task_engine.dir/src/main.cpp.o -c /Users/alexandra/engineering/projects/see-do/task-engine/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexandra/engineering/projects/doozy/task-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task_engine.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task_engine.dir/src/main.cpp.o -MF CMakeFiles/task_engine.dir/src/main.cpp.o.d -o CMakeFiles/task_engine.dir/src/main.cpp.o -c /Users/alexandra/engineering/projects/doozy/task-engine/src/main.cpp
 
 CMakeFiles/task_engine.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/task_engine.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexandra/engineering/projects/see-do/task-engine/src/main.cpp > CMakeFiles/task_engine.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexandra/engineering/projects/doozy/task-engine/src/main.cpp > CMakeFiles/task_engine.dir/src/main.cpp.i
 
 CMakeFiles/task_engine.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/task_engine.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexandra/engineering/projects/see-do/task-engine/src/main.cpp -o CMakeFiles/task_engine.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexandra/engineering/projects/doozy/task-engine/src/main.cpp -o CMakeFiles/task_engine.dir/src/main.cpp.s
 
 CMakeFiles/task_engine.dir/src/engine.cpp.o: CMakeFiles/task_engine.dir/flags.make
-CMakeFiles/task_engine.dir/src/engine.cpp.o: /Users/alexandra/engineering/projects/see-do/task-engine/src/engine.cpp
+CMakeFiles/task_engine.dir/src/engine.cpp.o: /Users/alexandra/engineering/projects/doozy/task-engine/src/engine.cpp
 CMakeFiles/task_engine.dir/src/engine.cpp.o: CMakeFiles/task_engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexandra/engineering/projects/see-do/task-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/task_engine.dir/src/engine.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task_engine.dir/src/engine.cpp.o -MF CMakeFiles/task_engine.dir/src/engine.cpp.o.d -o CMakeFiles/task_engine.dir/src/engine.cpp.o -c /Users/alexandra/engineering/projects/see-do/task-engine/src/engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexandra/engineering/projects/doozy/task-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/task_engine.dir/src/engine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task_engine.dir/src/engine.cpp.o -MF CMakeFiles/task_engine.dir/src/engine.cpp.o.d -o CMakeFiles/task_engine.dir/src/engine.cpp.o -c /Users/alexandra/engineering/projects/doozy/task-engine/src/engine.cpp
 
 CMakeFiles/task_engine.dir/src/engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/task_engine.dir/src/engine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexandra/engineering/projects/see-do/task-engine/src/engine.cpp > CMakeFiles/task_engine.dir/src/engine.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexandra/engineering/projects/doozy/task-engine/src/engine.cpp > CMakeFiles/task_engine.dir/src/engine.cpp.i
 
 CMakeFiles/task_engine.dir/src/engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/task_engine.dir/src/engine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexandra/engineering/projects/see-do/task-engine/src/engine.cpp -o CMakeFiles/task_engine.dir/src/engine.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexandra/engineering/projects/doozy/task-engine/src/engine.cpp -o CMakeFiles/task_engine.dir/src/engine.cpp.s
 
 # Object files for target task_engine
 task_engine_OBJECTS = \
@@ -112,7 +112,7 @@ task_engine: CMakeFiles/task_engine.dir/src/main.cpp.o
 task_engine: CMakeFiles/task_engine.dir/src/engine.cpp.o
 task_engine: CMakeFiles/task_engine.dir/build.make
 task_engine: CMakeFiles/task_engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alexandra/engineering/projects/see-do/task-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable task_engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alexandra/engineering/projects/doozy/task-engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable task_engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/task_engine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -124,6 +124,6 @@ CMakeFiles/task_engine.dir/clean:
 .PHONY : CMakeFiles/task_engine.dir/clean
 
 CMakeFiles/task_engine.dir/depend:
-	cd /Users/alexandra/engineering/projects/see-do/task-engine/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/alexandra/engineering/projects/see-do/task-engine /Users/alexandra/engineering/projects/see-do/task-engine /Users/alexandra/engineering/projects/see-do/task-engine/build /Users/alexandra/engineering/projects/see-do/task-engine/build /Users/alexandra/engineering/projects/see-do/task-engine/build/CMakeFiles/task_engine.dir/DependInfo.cmake "--color=$(COLOR)" task_engine
+	cd /Users/alexandra/engineering/projects/doozy/task-engine/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/alexandra/engineering/projects/doozy/task-engine /Users/alexandra/engineering/projects/doozy/task-engine /Users/alexandra/engineering/projects/doozy/task-engine/build /Users/alexandra/engineering/projects/doozy/task-engine/build /Users/alexandra/engineering/projects/doozy/task-engine/build/CMakeFiles/task_engine.dir/DependInfo.cmake "--color=$(COLOR)" task_engine
 .PHONY : CMakeFiles/task_engine.dir/depend
 
