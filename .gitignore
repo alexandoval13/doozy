@@ -6,6 +6,7 @@ dist/
 
 # Data
 data/
+.sqlite
 
 # C++ build artifacts
 task_engine/build/

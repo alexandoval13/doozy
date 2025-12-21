@@ -35,11 +35,11 @@ export interface PriorityData
 //   tag_id: string;
 // }
 
-export function getAllTasks(): Task[] {
+export async function getAllTasks(): Promise<Task[]> {
   return db.prepare(`SELECT * FROM task`).all() as Task[];
 }
 
-export function createTask(data: CreateTaskInput) {
+export async function createTask(data: CreateTaskInput) {
   const id = uuid();
   const created_at = new Date().toISOString();
 
@@ -53,32 +53,42 @@ export function createTask(data: CreateTaskInput) {
     story_id,
   } = data;
 
-  return db
-    .prepare(
-      `
+  db.prepare(
+    `
       INSERT INTO task (id, created_at, title, urgency, effort, task_priority, due_date, completed, story_id)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `
-    )
-    .run(
-      id,
-      created_at,
-      title,
-      urgency,
-      effort,
-      task_priority,
-      due_date,
-      completed,
-      story_id
-    );
+      `
+  ).run(
+    id,
+    created_at,
+    title,
+    urgency,
+    effort,
+    task_priority,
+    due_date,
+    completed,
+    story_id
+  );
+
+  return {
+    id,
+    created_at,
+    title,
+    urgency,
+    effort,
+    task_priority,
+    due_date,
+    completed,
+    story_id,
+  };
 }
 
-export function deleteTask(id: string) {
+export async function deleteTask(id: string) {
   return db
     .prepare(
       `
       DELETE FROM task WHERE id = ?
-    `
+      `
     )
     .run(id);
 }

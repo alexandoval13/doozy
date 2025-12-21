@@ -20,7 +20,7 @@ async function calculatePriority(
   }
 }
 
-export function getTasks() {
+export async function getTasks() {
   return TaskRepo.getAllTasks();
 }
 
@@ -45,6 +45,6 @@ export async function createTask(data: TaskRepo.CreateTaskInput) {
   });
 }
 
-export function deleteTask(id: string): Database.RunResult {
+export async function deleteTask(id: string): Promise<Database.RunResult> {
   return TaskRepo.deleteTask(id);
 }

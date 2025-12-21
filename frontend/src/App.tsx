@@ -6,7 +6,6 @@ type TaskCategory = 'today' | 'tomorrow' | 'all';
 interface Task {
   id: number;
   title: string;
-  hour: number;
   urgency: number;
   effort: number;
   category: TaskCategory;
@@ -18,7 +17,6 @@ export default function App() {
   const [listView, setListView] = useState<TaskCategory>('all');
 
   const [title, setTitle] = useState<string>('');
-  const [hour, setHour] = useState<string>('');
   const [urgency, setUrgency] = useState<string>('');
   const [effort, setEffort] = useState<string>('');
 
@@ -43,23 +41,30 @@ export default function App() {
   async function handleAddTask(e: React.FormEvent) {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:3000/tasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title,
-        hour: Number(hour),
-        urgency: Number(urgency),
-        effort: Number(effort),
-      }),
-    });
+    try {
+      const res = await fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title,
+          urgency: Number(urgency),
+          effort: Number(effort),
+        }),
+      });
 
-    setTitle('');
-    setHour('');
-    setUrgency('');
-    setEffort('');
+      if (!res.ok) {
+        throw new Error('Failed to create task');
+      }
 
-    loadTasks();
+      console.log({ task: await res.json() });
+      await loadTasks();
+
+      setTitle('');
+      setUrgency('');
+      setEffort('');
+    } catch (error) {
+      console.error('Failed to add task: ', error);
+    }
   }
 
   async function handleDeleteTask(id: number | string) {
@@ -67,7 +72,7 @@ export default function App() {
       method: 'DELETE',
     });
 
-    loadTasks();
+    await loadTasks();
   }
 
   useEffect(() => {
@@ -105,16 +110,6 @@ export default function App() {
                 columnGap: '12px',
               }}
             >
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <input
-                  onChange={(e) => setHour(e.target.value)}
-                  type="number"
-                  placeholder="0-23"
-                  id="hour"
-                  value={hour}
-                />
-                <label htmlFor="hour">Hour</label>
-              </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <input
                   onChange={(e) => setUrgency(e.target.value)}
