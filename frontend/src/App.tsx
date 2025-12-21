@@ -33,8 +33,8 @@ export default function App() {
       }
 
       setTasks(data);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -56,14 +56,13 @@ export default function App() {
         throw new Error('Failed to create task');
       }
 
-      console.log({ task: await res.json() });
       await loadTasks();
 
       setTitle('');
       setUrgency('');
       setEffort('');
-    } catch (error) {
-      console.error('Failed to add task: ', error);
+    } catch (err) {
+      console.error('Failed to add task: ', err);
     }
   }
 
