@@ -96,7 +96,7 @@ app.get('/', (req, res) => {
 //     // v0: store data in memory
 //     tasks.push(task);
 //     res.json(task);
-//   } catch (error) {
+//   } catch (err) {
 //     res.status(400).json({ error: error.message });
 //   }
 // });

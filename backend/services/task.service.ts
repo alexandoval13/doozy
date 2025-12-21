@@ -14,8 +14,8 @@ async function calculatePriority(
       task_priority: Number(priority),
       category,
     };
-  } catch (error) {
-    console.error('Failed to calculate priority. Error: ', error);
+  } catch (err) {
+    console.error('Failed to calculate priority. Error: ', err);
     return defaultResult;
   }
 }
