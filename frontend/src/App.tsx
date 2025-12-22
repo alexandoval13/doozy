@@ -22,7 +22,7 @@ export default function App() {
 
   async function loadTasks() {
     try {
-      const res = await fetch('http://localhost:3000/tasks');
+      const res = await fetch('http://localhost:3001/tasks');
       const data = await res.json();
 
       if (!Array.isArray(data)) {
@@ -42,7 +42,7 @@ export default function App() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3000/tasks', {
+      const res = await fetch('http://localhost:3001/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -67,7 +67,7 @@ export default function App() {
   }
 
   async function handleDeleteTask(id: number | string) {
-    await fetch(`http://localhost:3000/tasks/${id}`, {
+    await fetch(`http://localhost:3001/tasks/${id}`, {
       method: 'DELETE',
     });
 
