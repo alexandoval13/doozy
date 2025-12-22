@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import List, { type ListItem } from './List';
 
-type TaskCategory = 'today' | 'tomorrow' | 'all';
+type TaskCategory = 'today' | 'tomorrow' | 'long-term' | 'all';
 
-interface Task {
-  id: number;
+interface Task extends ListItem {
+  id: string;
   title: string;
   urgency: number;
   effort: number;
   category: TaskCategory;
-  priority: number;
+  task_priority: number;
 }
 
 export default function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [listView, setListView] = useState<TaskCategory>('all');
+  const [listView, setListView] = useState<TaskCategory>('today');
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
   const [title, setTitle] = useState<string>('');
   const [urgency, setUrgency] = useState<string>('');
@@ -74,9 +76,36 @@ export default function App() {
     await loadTasks();
   }
 
+  async function handleCompleteTask(id: number | string) {
+    await fetch(`http://localhost:3001/tasks/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        completed: 1,
+      }),
+    });
+
+    await loadTasks();
+  }
+
   useEffect(() => {
     loadTasks();
   }, []);
+
+  useEffect(() => {
+    setFilteredTasks(
+      tasks.filter((t: Task) => {
+        switch (listView) {
+          case 'today':
+            return t.task_priority >= 30;
+          case 'tomorrow':
+            return t.task_priority > 20 && t.task_priority < 30;
+          default:
+            return true;
+        }
+      })
+    );
+  }, [tasks, listView]);
 
   return (
     <>
@@ -180,67 +209,11 @@ export default function App() {
         </form>
 
         <div style={{ border: '2px solid gray' }}>
-          {listView === 'all' && (
-            <ul id="task-list-today" style={{ padding: '24px' }}>
-              {tasks.map((t) => (
-                <li key={`li::today::${t.id}`}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                    }}
-                  >
-                    <p>{t.title}</p>
-                    <button onClick={() => handleDeleteTask(t.id)}>
-                      DELETE
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-          {listView === 'today' && (
-            <ul id="task-list-today" style={{ padding: '24px' }}>
-              {tasks
-                .filter((t) => t.category === 'today')
-                .map((t) => (
-                  <li key={`li::today::${t.id}`}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <p>{t.title}</p>
-                      <button onClick={() => handleDeleteTask(t.id)}>
-                        DELETE
-                      </button>
-                    </div>
-                  </li>
-                ))}
-            </ul>
-          )}
-          {listView == 'tomorrow' && (
-            <ul id="task-list-tomorrow" style={{ padding: '24px' }}>
-              {tasks
-                .filter((t) => t.category === 'tomorrow')
-                .map((t) => (
-                  <li key={`li::tomorrow::${t.id}`}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <p>{t.title}</p>
-                      <button onClick={() => handleDeleteTask(t.id)}>
-                        DELETE
-                      </button>
-                    </div>
-                  </li>
-                ))}
-            </ul>
-          )}
+          <List
+            data={filteredTasks}
+            handleDelete={handleDeleteTask}
+            handleMarkComplete={handleCompleteTask}
+          />
         </div>
       </div>
     </>
