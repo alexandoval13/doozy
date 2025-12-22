@@ -5,8 +5,8 @@ node_modules/
 dist/
 
 # Data
-data/
 .sqlite
+.sqlite*
 
 # C++ build artifacts
 task_engine/build/

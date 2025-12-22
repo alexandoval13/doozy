@@ -10,8 +10,8 @@
     "dev:build": "tsc --watch",
     "dev:serve": "nodemon dist/index.js",
     "dev": "concurrently \"npm run dev:build\" \"npm run dev:serve\"",
-    "migrate": "node ./db/migrate.js",
-    "seed": "node ./db/seed.js"
+    "migrate": "node db/migrate.js",
+    "seed": "node db/seed.js"
   },
   "keywords": [],
   "author": "",
