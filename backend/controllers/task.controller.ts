@@ -19,6 +19,15 @@ export async function addTask(req: Request, res: Response) {
   }
 }
 
+export async function updateTask(req: Request, res: Response) {
+  try {
+    const udpatedTask = await TaskService.updateTask(req.params.id, req.body);
+    res.status(204).json(udpatedTask);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update task' });
+  }
+}
+
 export async function deleteTask(req: Request, res: Response) {
   try {
     await TaskService.deleteTask(req.params.id);

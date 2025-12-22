@@ -45,6 +45,13 @@ export async function createTask(data: TaskRepo.CreateTaskInput) {
   });
 }
 
+export async function updateTask(
+  id: string,
+  body: { [key: string]: string | number }
+) {
+  return TaskRepo.updateTask(id, body);
+}
+
 export async function deleteTask(id: string): Promise<Database.RunResult> {
   return TaskRepo.deleteTask(id);
 }

@@ -39,6 +39,13 @@ export async function getAllTasks(): Promise<Task[]> {
   return db.prepare(`SELECT * FROM task`).all() as Task[];
 }
 
+export async function getTaskById(id: string): Promise<Task> {
+  const task = (await db
+    .prepare(`SELECT * FROM task WHERE id = ?`)
+    .get(id)) as Task;
+  return task;
+}
+
 export async function createTask(data: CreateTaskInput) {
   const id = uuid();
   const created_at = new Date().toISOString();
@@ -81,6 +88,45 @@ export async function createTask(data: CreateTaskInput) {
     completed,
     story_id,
   };
+}
+
+export type UpdateAllowedColumns =
+  | 'title'
+  | 'urgency'
+  | 'effort'
+  | 'task_priority'
+  | 'due_date'
+  | 'completed'
+  | 'story_id';
+
+export async function updateTask(
+  id: string,
+  updates: Partial<Record<UpdateAllowedColumns, string | number | null>>
+) {
+  const allowedColumns: UpdateAllowedColumns[] = [
+    'title',
+    'urgency',
+    'effort',
+    'task_priority',
+    'due_date',
+    'completed',
+    'story_id',
+  ];
+
+  const entries = Object.entries(updates).filter(([key]) =>
+    allowedColumns.includes(key as UpdateAllowedColumns)
+  );
+
+  if (entries.length === 0) return;
+
+  const setClause = entries.map(([column]) => `${column} = ?`).join(', ');
+  let values = entries.map(([, value]) => value);
+  values.push(id);
+
+  const sql = `UPDATE task SET ${setClause} WHERE id = ?`;
+  db.prepare(sql).run(...values);
+
+  return await getTaskById(id);
 }
 
 export async function deleteTask(id: string) {
