@@ -15,9 +15,7 @@ export async function getAllStories() {
 }
 
 export async function getStory(id: string) {
-  return db
-    .prepare(`SELECT * FROM story WHERE id = ?`)
-    .get('73007f73-5e37-4143-b191-337cf2c3bfb4') as Story;
+  return db.prepare(`SELECT * FROM story WHERE id = ?`).get(id) as Story;
 }
 
 export async function createStory(data: CreateStoryData) {
